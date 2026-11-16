@@ -1,0 +1,200 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Details</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+        }
+
+        h1 {
+            color: white;
+            margin-bottom: 30px;
+            font-size: 32px;
+            animation: slideDown 1s ease;
+            text-align: center;
+        }
+
+        .card {
+            width: 350px;
+            padding: 30px;
+            border-radius: 20px;
+            background: white;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+            text-align: center;
+            animation: fadeIn 1s ease;
+            transition: transform 0.4s, box-shadow 0.4s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+
+        .card img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #764ba2;
+            margin-bottom: 20px;
+            animation: imagePop 1.2s ease;
+            transition: transform 0.4s;
+        }
+
+        .card img:hover {
+            transform: rotate(5deg) scale(1.1);
+        }
+
+        .card h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .details {
+            text-align: left;
+        }
+
+        .details h3 {
+            color: #555;
+            font-size: 16px;
+            padding: 12px;
+            margin: 8px 0;
+            background: #f4f2fa;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .details h3:hover {
+            background: #e4ddf5;
+            transform: translateX(5px);
+        }
+
+        .present {
+            color: #15803d;
+            background: #dcfce7;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        .absent {
+            color: #dc2626;
+            background: #fee2e2;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 25px;
+            color: white;
+            background: #764ba2;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: 0.3s;
+        }
+
+        .back:hover {
+            background: #503078;
+            transform: scale(1.08);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes imagePop {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 450px) {
+            .card {
+                width: 100%;
+                max-width: 350px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Student Profile</h1>
+    <div class="card">
+        <img src="{{ stds[6] }}" alt="Student Profile">
+        <h2>{{ stds[1] }}</h2>
+        <div class="details">
+            <h3>Name: {{ stds[1] }}</h3>
+            <h3>Age: {{ stds[2] }}</h3>
+            <h3>Gender: {{ stds[3] }}</h3>
+            <h3>Marks: {{ stds[4] }}</h3>
+            <h3>Course: {{ stds[5] }}</h3>
+            <h3>
+                Status:
+                {% if stds[7] == 1 or stds[7] == 'Present' %}
+                    <span class="present">Present</span>
+                {% else %}
+                    <span class="absent">Absent</span>
+                {% endif %}
+            </h3>
+        </div>
+        <a href="/" class="back">← Back to Students</a>
+    </div>
+</body>
+</html>

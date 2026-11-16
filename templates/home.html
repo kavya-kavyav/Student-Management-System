@@ -1,0 +1,333 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management Dashboard</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f3f5fb;
+            min-height: 100vh;
+            padding: 30px 5%;
+            color: #26324a;
+        }
+
+        /* Header */
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 35px;
+            animation: slideDown 0.8s ease;
+        }
+
+        .header h1 {
+            font-size: 30px;
+            color: #263b80;
+            font-weight: 700;
+        }
+
+        .header p {
+            color: #7b8499;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .add {
+            display: inline-block;
+            background: linear-gradient(135deg, #536dfe, #7c4dff);
+            color: white;
+            padding: 12px 22px;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 500;
+            box-shadow: 0 5px 15px rgba(83,109,254,0.25);
+            transition: 0.3s ease;
+        }
+
+        .add:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 22px rgba(83,109,254,0.35);
+        }
+
+        /* Student container */
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        /* Student card */
+
+        .card {
+            width: 260px;
+            padding: 22px;
+            background: white;
+            border-radius: 18px;
+            text-align: center;
+            border: 1px solid #e8eaf3;
+            box-shadow: 0 5px 20px rgba(40,50,90,0.06);
+
+            animation: fadeUp 0.7s ease both;
+            transition: transform 0.35s ease,
+                        box-shadow 0.35s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(40,50,90,0.15);
+        }
+
+        /* Student image */
+
+        .card img {
+            width: 115px;
+            height: 115px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #e4e9ff;
+            margin-bottom: 15px;
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover img {
+            transform: scale(1.08);
+            border-color: #7c4dff;
+        }
+
+        .card h2 {
+            font-size: 19px;
+            color: #283b70;
+            margin-bottom: 15px;
+        }
+
+        /* Student information */
+
+        .details {
+            text-align: left;
+            margin: 15px 0;
+        }
+
+        .details p {
+            font-size: 13px;
+            color: #626d82;
+            padding: 9px 10px;
+            margin: 5px 0;
+            background: #f7f8fc;
+            border-radius: 7px;
+            transition: 0.3s ease;
+        }
+
+        .details p:hover {
+            background: #edf0ff;
+            transform: translateX(5px);
+        }
+
+        .details strong {
+            color: #35446a;
+        }
+
+        /* Attendance */
+
+        .status {
+            margin: 15px 0;
+            font-size: 13px;
+        }
+
+        .present {
+            color: #16834a;
+            background: #e0f7e9;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .absent {
+            color: #d9364f;
+            background: #ffe5e9;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        /* Buttons */
+
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .view {
+            background: #536dfe;
+            color: white;
+            text-decoration: none;
+            padding: 9px 18px;
+            border-radius: 8px;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+
+        .view:hover {
+            background: #3549c7;
+            transform: scale(1.05);
+        }
+
+        .delete {
+            background: #ff5263;
+            color: white;
+            border: none;
+            padding: 9px 18px;
+            border-radius: 8px;
+            font-size: 13px;
+            cursor: pointer;
+            font-family: inherit;
+            transition: 0.3s;
+        }
+
+        .delete:hover {
+            background: #d9233c;
+            transform: scale(1.05);
+        }
+
+        /* Animations */
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(35px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 12px;
+            }
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .card {
+                width: 100%;
+                max-width: 350px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+        .update {
+    background: #17a2b8;
+    color: white;
+    text-decoration: none;
+    padding: 9px 18px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-family: inherit;
+    transition: 0.3s ease;
+}
+
+.update:hover {
+    background: #117a8b;
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(23, 162, 184, 0.3);
+}
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div>
+            <h1>Student Management</h1>
+            <p>Manage student information and attendance records</p>
+        </div>
+        <a href="/students/add" class="add">
+            + Add Student
+        </a>
+    </div>
+    <!-- Student Cards -->
+    <div class="container">
+        {% for std in stds %}
+        <div class="card">
+            <img src="{{ std[6] }}" alt="Student Image">
+            <h2>{{ std[1] }}</h2>
+            <div class="details">
+                <p><strong>Age:</strong> {{ std[2] }}</p>
+                <p><strong>Gender:</strong> {{ std[3] }}</p>
+                <p><strong>Marks:</strong> {{ std[4] }}</p>
+                <p><strong>Course:</strong> {{ std[5] }}</p>
+            </div>
+            <div class="status">
+                <strong>Attendance:</strong>
+                {% if std[7] == 1 or std[7] == 'Present' %}
+                    <span class="present">Present</span>
+                {% else %}
+                    <span class="absent">Absent</span>
+                {% endif %}
+            </div>
+            <div class="actions">
+                <a href="/student/{{ std[0] }}" class="view">
+                    View
+                </a>
+                <form action="/student/delete/{{ std[0] }}" method="post"
+                      onsubmit="return confirm('Are you sure you want to delete this student?');">
+                    <button type="submit" class="delete">
+                        Delete
+                    </button>
+                </form>
+                <a href="/update/std/{{std[0]}}" class="update">Edit</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
